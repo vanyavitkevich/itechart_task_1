@@ -1,1 +1,1 @@
-https://vanyavitkevich.github.io/itechart_task_1/index.html
+https://vanyavitkevich.github.io/itechart_task_1/
