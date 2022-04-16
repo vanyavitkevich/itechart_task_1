@@ -1,0 +1,170 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    position: relative;
+    width: 100%;
+    min-width: 320px;
+}
+
+.main_section{
+    position: relative;
+    padding-left: 40px;
+}
+
+.toast_section{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    margin: 15px;
+    padding-right: 45px;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100vh;
+    background: inherit;
+}
+
+.toast_section-elem{
+    padding: 10px;
+    padding-left: 45px;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    position: relative;
+    margin-top: 25px;
+    margin-right: 10px;
+    width: 250px;
+    transition: 0.5s;
+    animation-name: right_to_left;
+    animation-duration: 0.5s;
+}
+@keyframes right_to_left {
+    from {right: -1000px;}
+    to {right: 0px;}
+}
+
+.toast_section-elem_left_to_right{
+    animation-name: left_to_right;
+    animation-duration: 0.5s;
+}
+@keyframes left_to_right {
+    from {right: 0px;}
+    to {right: -1000px;}
+}
+
+.toast_section-elem_img{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 4px;
+    left: 5px;
+}
+
+.toast_section-elem_close{
+    background-image: url('../img/cross-out-mark-svgrepo-com.svg');
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+button{
+    cursor: pointer;
+    padding: 5px 10px;
+    background: rgb(255, 255, 255);
+    border: 4px solid inherit;
+    transition-duration: 0.2s;
+}
+button:hover{
+    background: rgb(148, 148, 148);
+}
+
+.main_section__ul{
+    display: flex;
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.main_section__ul__li{
+    padding-right: 15px;
+}
+
+.modal-wrapper{
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+    width: 100vw;
+    height: 100vh;
+}
+.modal-wrapper-hide{
+    display: none;
+}
+
+.modal-wrapper__ins{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 500px;
+    padding: 75px 50px;
+    border-radius: 15px;
+    top: 50%;
+    left: 50%;
+    background: rgb(255, 255, 255);
+    transform: translate(-50%, -50%);
+}
+
+.modal-wrapper__ins>label {
+    padding-top: 5px;
+}
+
+.modal-wrapper__ins>input {
+    padding: 5px 0;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(0,0,0,0.5);
+    border-radius: 4px;
+}
+
+#Submit {
+    padding: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#Submit:hover {
+    background: rgb(21, 255, 0);
+}
+
+.modal-wrapper__ins-close{
+    background-image: url('../img/cross-out-mark-svgrepo-com.svg');
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 322px) {
+    .modal-wrapper{
+        background: inherit;
+        width: 100%;
+        height: 100%;
+    }
+    .modal-wrapper__ins{
+        padding: 25px 10px;
+        border-radius: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: translate(0, 0);
+    }
+}
