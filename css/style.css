@@ -103,9 +103,9 @@ button:hover{
     width: 100vw;
     height: 100vh;
 }
-.modal-wrapper-hide{
+/* .modal-wrapper-hide{
     display: none;
-}
+} */
 
 .modal-wrapper__ins{
     display: flex;
@@ -132,13 +132,13 @@ button:hover{
     border-radius: 4px;
 }
 
-#Submit {
+.Submit {
     padding: 5px;
     margin-top: 10px;
     cursor: pointer;
     transition: 0.3s;
 }
-#Submit:hover {
+.Submit:hover {
     background: rgb(21, 255, 0);
 }
 

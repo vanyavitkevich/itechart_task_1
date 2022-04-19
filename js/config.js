@@ -39,19 +39,19 @@ var ModalConfig = new Modal ({
     'First name': {
         'type': 'text', 
         'value': 'John',
-        'required': true
+        'required': true,
     }, 
     'Last name': {
         'type': 'text',
         'value': 'Doe',
-        'required': true
+        'required': true,
     }, 
     'Password': {
         'type': 'password',
-        'required': true
+        'required': true,
     },
     'Age': {
         'type': 'number',
-        'required': true
+        'required': true,
     }
 })
