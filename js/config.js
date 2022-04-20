@@ -1,4 +1,4 @@
-var ErrToast = new Toast({
+var ErrToast = {
     'style': {
         'background': 'red',
         'text-decoration-line': 'underline',
@@ -6,9 +6,9 @@ var ErrToast = new Toast({
     },
     'text': 'Error!',
     'icon': './img/error-svgrepo-com.svg',
-})
+}
 
-var WarnToast = new Toast({
+var WarnToast = {
     'style': {
         'background': 'yellow',
         'font-family': 'Arial, Helvetica, sans-serif',
@@ -16,26 +16,26 @@ var WarnToast = new Toast({
     },
     'text': 'Warning!',
     'icon': './img/warning-svgrepo-com.svg',
-})
+}
 
-var SuccToast = new Toast({
+var SuccToast = {
     'style': {
         'background': 'green',
         'color': 'white',
     },
     'text': 'Success!',
     'icon': './img/checked-success-svgrepo-com.svg',
-})
+}
 
-var InfoToast = new Toast({
+var InfoToast = {
     'style': {
         'background': 'aqua',
     },
     'text': 'Info',
     'icon': './img/info-svgrepo-com.svg',
-})
+}
 
-var ModalConfig = new Modal ({
+var ModalConfig = {
     'First name': {
         'type': 'text', 
         'value': 'John',
@@ -54,4 +54,4 @@ var ModalConfig = new Modal ({
         'type': 'number',
         'required': true,
     }
-})
+}

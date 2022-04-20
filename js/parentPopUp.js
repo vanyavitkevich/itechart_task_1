@@ -1,7 +1,6 @@
 var PopUpNotifications = {
 
     show: function() {
-        this.createPopUpNotification();
         this.wrapper.appendChild(this.PopUpNotification);
     },
 

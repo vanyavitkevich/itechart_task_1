@@ -1,19 +1,19 @@
 document.getElementById('errorBtn').addEventListener('click', function () {
-    ErrToast.show();
+    (new Toast(ErrToast)).show();
 })
 
 document.getElementById('warningBtn').addEventListener('click', function () {
-    WarnToast.show();
+    (new Toast(WarnToast)).show();
 })
 
 document.getElementById('succesBtn').addEventListener('click', function () {
-    SuccToast.show();
+    (new Toast(SuccToast)).show();
 })
 
 document.getElementById('infoBtn').addEventListener('click', function () {
-    InfoToast.show();
+    (new Toast(InfoToast)).show();
 })
 
 document.getElementById('modalBtn').addEventListener('click', function () {
-    ModalConfig.show();
+    (new Modal(ModalConfig)).show();
 })
