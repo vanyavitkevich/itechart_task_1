@@ -1,10 +1,17 @@
-var PopUpNotifications = {
+function PopUpNotifications (modalElem) {
+
+    this.modalElem = modalElem;
+
+}
+
+PopUpNotifications.prototype = {
+    constructor: PopUpNotifications,
 
     show: function() {
-        this.wrapper.appendChild(this.PopUpNotification);
+        this.modalElem.classList.remove('hidden');
     },
 
-    hide: function(removingElem) {
-        removingElem.parentElement.removeChild(removingElem);
+    hide: function() {
+        this.modalElem.classList.add('hidden');
     }
 }

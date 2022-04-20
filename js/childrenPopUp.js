@@ -1,124 +1,133 @@
-var Toast = function (config) {
+function Modal (modalWrapper, config) {
 
-    this.wrapper = document.getElementById('toast_section');
+    this.createPopUpNotifications = function () {
+        var state = this;
 
-    for(var key in config) {
-        this[key] = config[key];
-    }
+        var body = document.getElementById('body');
 
-    var state = this;
-    var status = true;
-    var timeDuration = 0.5;
-    var toastElem = document.createElement('div');
-    var closeBtn = document.createElement('div');
-    var toastIcon = document.createElement('div');
+        var inputObj = {};
 
-    toastElem.classList.add('toast_section-elem');
-    toastElem.innerText = 'This message talk: ' + this.text;
-    
-    for(var keyStyle in this.style) {
-        toastElem.style[keyStyle] = this.style[keyStyle];
-    }
-
-    toastElem.appendChild(closeBtn);
-    toastElem.appendChild(toastIcon);
-    toastIcon.classList.add('toast_section-elem_img');
-    toastIcon.style.backgroundImage = 'url(' + this.icon + ')';
-    closeBtn.classList.add('toast_section-elem_close');
-
-    closeBtn.addEventListener('click', function (){
-        status = false;
-        toastElem.classList.add('toast_section-elem_left_to_right');
-        setTimeout( function (){
-            state.hide(toastElem);
-        }, timeDuration * 1000 - 10)
-    });
-
-    setTimeout( function (){
-        if(status) {
-            toastElem.classList.add('toast_section-elem_left_to_right');
+        for(var key in config) {
+            inputObj[key] = config[key];
         }
-    }, 5000 - timeDuration * 1000)
 
-    setTimeout( function (){
-        if(status) {
-            state.hide(toastElem);
-        }
-    }, 5000)
+        modalWrapper.classList.add('modal-wrapper');
+        modalWrapper.classList.add('hidden');
 
-    this.PopUpNotification = toastElem;
-        
-}
+        var modalWrapperIns = document.createElement('div');
+        modalWrapperIns.classList.add('modal-wrapper__ins');
 
-var Modal = function (config) {
+        var submitBtn = document.createElement('input');
+        submitBtn.classList.add('Submit');
+        submitBtn.setAttribute('type', "submit");
+        submitBtn.setAttribute('value', "Submit");
 
-    this.wrapper = document.getElementById('body');
+        var closeModal = document.createElement('div');
+        closeModal.classList.add('modal-wrapper__ins-close');
 
-    var state = this;
+        modalWrapperIns.appendChild(submitBtn);
+        modalWrapperIns.appendChild(closeModal);
 
-    var inputObj = {};
-
-    for(var key in config) {
-        inputObj[key] = config[key];
-    }
-
-    var modalWrapper = document.createElement('div');
-    modalWrapper.classList.add('modal-wrapper');
-
-    var modalWrapperIns = document.createElement('div');
-    modalWrapperIns.classList.add('modal-wrapper__ins');
-
-    var submitBtn = document.createElement('input');
-    submitBtn.classList.add('Submit');
-    submitBtn.setAttribute('type', "submit");
-    submitBtn.setAttribute('value', "Submit");
-
-    var closeModal = document.createElement('div');
-    closeModal.classList.add('modal-wrapper__ins-close');
-
-    modalWrapperIns.appendChild(submitBtn);
-    modalWrapperIns.appendChild(closeModal);
-
-    for(var keyModal in inputObj) {
-        var labelElem = document.createElement('label');
-        labelElem.innerText = keyModal + ':';
-        labelElem.setAttribute('for', keyModal);
-        modalWrapperIns.appendChild(labelElem);
-        var inputElem = document.createElement('input');
-        inputElem.setAttribute('name', keyModal);
-        inputElem.setAttribute('id', 'input ' + keyModal);
-        modalWrapperIns.appendChild(inputElem);
-        for(var keyModalIns in inputObj[keyModal]) {
-            inputElem.setAttribute(keyModalIns, inputObj[keyModal][keyModalIns]);
-        }
-    }
-
-    submitBtn.addEventListener('click', function() {
-            for(var keyId in inputObj) {
-                console.log(keyId + ': ' + document.getElementById('input ' + keyId).value);
+        for(var keyModal in inputObj) {
+            var labelElem = document.createElement('label');
+            labelElem.innerText = keyModal + ':';
+            labelElem.setAttribute('for', keyModal);
+            modalWrapperIns.appendChild(labelElem);
+            var inputElem = document.createElement('input');
+            inputElem.setAttribute('name', keyModal);
+            inputElem.setAttribute('id', 'input ' + keyModal);
+            modalWrapperIns.appendChild(inputElem);
+            for(var keyModalIns in inputObj[keyModal]) {
+                inputElem.setAttribute(keyModalIns, inputObj[keyModal][keyModalIns]);
             }
         }
-    );
 
-    modalWrapperIns.addEventListener('click', function(event) {
-        event.stopPropagation();
-    })
+        submitBtn.addEventListener('click', function() {
+                for(var keyId in inputObj) {
+                    console.log(keyId + ': ' + document.getElementById('input ' + keyId).value);
+                }
+            }
+        );
 
-    submitBtn.style.order = Object.keys(inputObj).length;
+        modalWrapperIns.addEventListener('click', function(event) {
+            event.stopPropagation();
+        })
 
-    closeModal.addEventListener('click', function() {
-        state.hide(modalWrapper);
-    })
+        submitBtn.style.order = Object.keys(inputObj).length;
 
-    modalWrapper.addEventListener('click', function() {
-        state.hide(modalWrapper);
-    })
+        closeModal.addEventListener('click', function() {
+            state.hide();
+        })
 
-    modalWrapper.appendChild(modalWrapperIns);
+        modalWrapper.addEventListener('click', function() {
+            state.hide();
+        })
 
-    this.PopUpNotification = modalWrapper;
+        modalWrapper.appendChild(modalWrapperIns);
+
+        body.appendChild(modalWrapper);
+        
+    }
+
+    this.createPopUpNotifications();
     
+    Modal.superclass.prototype.constructor.call(this, modalWrapper);
+
 }
 
-Toast.prototype = PopUpNotifications;
-Modal.prototype = PopUpNotifications;
+function Toast (toastElem, config) {
+
+    this.createPopUpNotifications = function () {
+
+        for(var key in config) {
+            this[key] = config[key];
+        }
+
+        var state = this;
+        var status = true;
+        var timeDuration = 0.5;
+        var closeBtn = document.createElement('div');
+        var toastIcon = document.createElement('div');
+
+        toastElem.classList.add('toast_section-elem');
+        toastElem.classList.add('hidden');
+        toastElem.innerText = 'This message talk: ' + this.text;
+
+        for(var keyStyle in this.style) {
+            toastElem.style[keyStyle] = this.style[keyStyle];
+        }
+
+        toastElem.appendChild(closeBtn);
+        toastElem.appendChild(toastIcon);
+        toastIcon.classList.add('toast_section-elem_img');
+        toastIcon.style.backgroundImage = 'url(' + this.icon + ')';
+        closeBtn.classList.add('toast_section-elem_close');
+
+        closeBtn.addEventListener('click', function (){
+            status = false;
+            toastElem.classList.add('toast_section-elem_left_to_right');
+            setTimeout( function (){
+                state.hide(toastElem);
+            }, timeDuration * 1000 - 100)
+        });
+
+        setTimeout( function (){
+            if(status) {
+                toastElem.classList.add('toast_section-elem_left_to_right');
+            }
+        }, 5000 - timeDuration * 1000 + 100)
+
+        setTimeout( function (){
+            if(status) {
+                state.hide(toastElem);
+            }
+        }, 5000)
+
+        document.getElementById('toast_section').appendChild(toastElem);
+
+    }
+     
+    this.createPopUpNotifications();
+
+    Toast.superclass.prototype.constructor.call(this, toastElem);
+}

@@ -1,4 +1,4 @@
-var ErrToast = {
+var ErrToastConfig = {
     'style': {
         'background': 'red',
         'text-decoration-line': 'underline',
@@ -8,7 +8,7 @@ var ErrToast = {
     'icon': './img/error-svgrepo-com.svg',
 }
 
-var WarnToast = {
+var WarnToastConfig = {
     'style': {
         'background': 'yellow',
         'font-family': 'Arial, Helvetica, sans-serif',
@@ -18,7 +18,7 @@ var WarnToast = {
     'icon': './img/warning-svgrepo-com.svg',
 }
 
-var SuccToast = {
+var SuccToastConfig = {
     'style': {
         'background': 'green',
         'color': 'white',
@@ -27,7 +27,7 @@ var SuccToast = {
     'icon': './img/checked-success-svgrepo-com.svg',
 }
 
-var InfoToast = {
+var InfoToastConfig = {
     'style': {
         'background': 'aqua',
     },
