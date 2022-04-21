@@ -1,11 +1,11 @@
-extend(Modal, PopUpNotifications);
-extend(Toast, PopUpNotifications);
+import {Modal, Toast} from './childrenPopUp.js';
+import {ModalConfig, ErrToastConfig, WarnToastConfig, SuccToastConfig, InfoToastConfig} from './config.js';
 
-var ModalWindow = new Modal(document.createElement('div'), ModalConfig);
-var ErrToast = new Toast(document.createElement('div'), ErrToastConfig);
-var WarnToast = new Toast(document.createElement('div'), WarnToastConfig);
-var SuccToast = new Toast(document.createElement('div'), SuccToastConfig);
-var InfoToast = new Toast(document.createElement('div'), InfoToastConfig);
+let ModalWindow = new Modal(ModalConfig);
+let ErrToast = new Toast(ErrToastConfig);
+let WarnToast = new Toast(WarnToastConfig);
+let SuccToast = new Toast(SuccToastConfig);
+let InfoToast = new Toast(InfoToastConfig);
 
 document.getElementById('errorBtn').addEventListener('click', function () {
     ErrToast.show();

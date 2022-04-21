@@ -1,113 +1,117 @@
-function Modal (modalWrapper, config) {
+import PopUpNotifications from './parentPopUp.js';
 
-    this.createPopUpNotifications = function () {
-        var state = this;
+export class Modal extends PopUpNotifications {
 
-        var body = document.getElementById('body');
-
-        var inputObj = {};
-
-        for(var key in config) {
+    constructor(config) {
+        
+        const BODY = document.getElementById('body');
+    
+        let inputObj = {};
+    
+        for(let key in config) {
             inputObj[key] = config[key];
         }
-
+    
+        let modalWrapper = document.createElement('div');
         modalWrapper.classList.add('modal-wrapper');
         modalWrapper.classList.add('hidden');
-
-        var modalWrapperIns = document.createElement('div');
+    
+        let modalWrapperIns = document.createElement('div');
         modalWrapperIns.classList.add('modal-wrapper__ins');
-
-        var submitBtn = document.createElement('input');
+    
+        let submitBtn = document.createElement('input');
         submitBtn.classList.add('Submit');
         submitBtn.setAttribute('type', "submit");
         submitBtn.setAttribute('value', "Submit");
-
-        var closeModal = document.createElement('div');
+    
+        let closeModal = document.createElement('div');
         closeModal.classList.add('modal-wrapper__ins-close');
-
+    
         modalWrapperIns.appendChild(submitBtn);
         modalWrapperIns.appendChild(closeModal);
-
-        for(var keyModal in inputObj) {
-            var labelElem = document.createElement('label');
+    
+        for(let keyModal in inputObj) {
+            let labelElem = document.createElement('label');
             labelElem.innerText = keyModal + ':';
             labelElem.setAttribute('for', keyModal);
             modalWrapperIns.appendChild(labelElem);
-            var inputElem = document.createElement('input');
+            let inputElem = document.createElement('input');
             inputElem.setAttribute('name', keyModal);
             inputElem.setAttribute('id', 'input ' + keyModal);
             modalWrapperIns.appendChild(inputElem);
-            for(var keyModalIns in inputObj[keyModal]) {
+            for(let keyModalIns in inputObj[keyModal]) {
                 inputElem.setAttribute(keyModalIns, inputObj[keyModal][keyModalIns]);
             }
         }
-
+    
         submitBtn.addEventListener('click', function() {
-                for(var keyId in inputObj) {
+                for(let keyId in inputObj) {
                     console.log(keyId + ': ' + document.getElementById('input ' + keyId).value);
                 }
             }
         );
-
-        modalWrapperIns.addEventListener('click', function(event) {
+    
+        modalWrapperIns.addEventListener('click', (event) =>  {
             event.stopPropagation();
         })
-
+    
         submitBtn.style.order = Object.keys(inputObj).length;
-
-        closeModal.addEventListener('click', function() {
-            state.hide();
+    
+        closeModal.addEventListener('click', () => {
+            super.hide();
         })
-
-        modalWrapper.addEventListener('click', function() {
-            state.hide();
+    
+        modalWrapper.addEventListener('click', () => {
+            super.hide();
         })
-
+    
         modalWrapper.appendChild(modalWrapperIns);
 
-        body.appendChild(modalWrapper);
-        
-    }
-
-    this.createPopUpNotifications();
+        super(modalWrapper);
     
-    Modal.superclass.prototype.constructor.call(this, modalWrapper);
+        BODY.appendChild(modalWrapper);
+
+    };
 
 }
 
-function Toast (toastElem, config) {
+export class Toast extends PopUpNotifications {
 
-    this.createPopUpNotifications = function () {
+    constructor(config) {
 
-        for(var key in config) {
-            this[key] = config[key];
+        let inputObj = {};
+    
+        for(let key in config) {
+            inputObj[key] = config[key];
         }
 
-        var state = this;
-        var status = true;
-        var timeDuration = 0.5;
-        var closeBtn = document.createElement('div');
-        var toastIcon = document.createElement('div');
+        let status = true;
+        let timeDuration = 0.5;
+        let toastElem = document.createElement('div');
+        let closeBtn = document.createElement('div');
+        let toastIcon = document.createElement('div');
 
         toastElem.classList.add('toast_section-elem');
         toastElem.classList.add('hidden');
-        toastElem.innerText = 'This message talk: ' + this.text;
+        toastElem.innerText = 'This message talk: ' + inputObj.text;
 
-        for(var keyStyle in this.style) {
-            toastElem.style[keyStyle] = this.style[keyStyle];
+        for(let keyStyle in inputObj.style) {
+            toastElem.style[keyStyle] = inputObj.style[keyStyle];
         }
 
         toastElem.appendChild(closeBtn);
         toastElem.appendChild(toastIcon);
+
         toastIcon.classList.add('toast_section-elem_img');
-        toastIcon.style.backgroundImage = 'url(' + this.icon + ')';
+        toastIcon.style.backgroundImage = 'url(' + inputObj.icon + ')';
+
         closeBtn.classList.add('toast_section-elem_close');
 
-        closeBtn.addEventListener('click', function (){
+        closeBtn.addEventListener('click', () => {
             status = false;
             toastElem.classList.add('toast_section-elem_left_to_right');
-            setTimeout( function (){
-                state.hide(toastElem);
+            setTimeout(() => {
+                super.hide();
             }, timeDuration * 1000 - 100)
         });
 
@@ -117,17 +121,16 @@ function Toast (toastElem, config) {
             }
         }, 5000 - timeDuration * 1000 + 100)
 
-        setTimeout( function (){
+        setTimeout(() => {
             if(status) {
-                state.hide(toastElem);
+                super.hide();
             }
         }, 5000)
 
         document.getElementById('toast_section').appendChild(toastElem);
 
-    }
-     
-    this.createPopUpNotifications();
+        super(toastElem);
 
-    Toast.superclass.prototype.constructor.call(this, toastElem);
+    }
+    
 }

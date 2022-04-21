@@ -1,4 +1,4 @@
-var ErrToastConfig = {
+let ErrToastConfig = {
     'style': {
         'background': 'red',
         'text-decoration-line': 'underline',
@@ -8,7 +8,7 @@ var ErrToastConfig = {
     'icon': './img/error-svgrepo-com.svg',
 }
 
-var WarnToastConfig = {
+let WarnToastConfig = {
     'style': {
         'background': 'yellow',
         'font-family': 'Arial, Helvetica, sans-serif',
@@ -18,7 +18,7 @@ var WarnToastConfig = {
     'icon': './img/warning-svgrepo-com.svg',
 }
 
-var SuccToastConfig = {
+let SuccToastConfig = {
     'style': {
         'background': 'green',
         'color': 'white',
@@ -27,7 +27,7 @@ var SuccToastConfig = {
     'icon': './img/checked-success-svgrepo-com.svg',
 }
 
-var InfoToastConfig = {
+let InfoToastConfig = {
     'style': {
         'background': 'aqua',
     },
@@ -35,7 +35,7 @@ var InfoToastConfig = {
     'icon': './img/info-svgrepo-com.svg',
 }
 
-var ModalConfig = {
+let ModalConfig = {
     'First name': {
         'type': 'text', 
         'value': 'John',
@@ -55,3 +55,5 @@ var ModalConfig = {
         'required': true,
     }
 }
+
+export {ModalConfig, InfoToastConfig, SuccToastConfig, ErrToastConfig, WarnToastConfig};

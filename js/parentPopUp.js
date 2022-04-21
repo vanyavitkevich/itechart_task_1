@@ -1,17 +1,13 @@
-function PopUpNotifications (modalElem) {
+export default class PopUpNotifications {
+    constructor(modalElem){
+        this.modalElem = modalElem;
+    };
 
-    this.modalElem = modalElem;
-
-}
-
-PopUpNotifications.prototype = {
-    constructor: PopUpNotifications,
-
-    show: function() {
+    show() {
         this.modalElem.classList.remove('hidden');
-    },
+    };
 
-    hide: function() {
+    hide() {
         this.modalElem.classList.add('hidden');
-    }
+    };
 }
